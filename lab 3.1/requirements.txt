@@ -1,0 +1,2 @@
+# No third-party packages required; uses the Python standard library only.
+# tkinter requires Tcl/Tk support in the Python installation (not a pip package).

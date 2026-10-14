@@ -55,7 +55,7 @@ class Starfield:
         self.animate()
 
     def reset_star(self, star, initial=False):
-        # Выбираем положение на экране и переводим его в координаты 3D.
+        
         star.z = random.uniform(self.NEAR, self.FAR) if initial else self.FAR
         star.x = random.uniform(-self.width / 2, self.width / 2) * star.z / self.focal
         star.y = random.uniform(-self.height / 2, self.height / 2) * star.z / self.focal
@@ -67,7 +67,7 @@ class Starfield:
         self.focal = max(200.0, min(self.width, self.height) * 0.85)
 
     def mouse_move(self, event):
-        # Направление полёта задаётся лучом из камеры к указателю мыши.
+        
         self.target_x = (event.x - self.width / 2) / self.focal
         self.target_y = (event.y - self.height / 2) / self.focal
 
@@ -88,7 +88,7 @@ class Starfield:
         slower = bool(self.keys & {"down", "s"})
         self.speed = max(0.0, min(2000.0, self.speed + (faster - slower) * 500 * dt))
 
-        # Плавное изменение направления; скорость не зависит от частоты кадров.
+        
         smoothing = 1 - math.exp(-5 * dt)
         self.heading_x += (self.target_x - self.heading_x) * smoothing
         self.heading_y += (self.target_y - self.heading_y) * smoothing
@@ -102,7 +102,7 @@ class Starfield:
             if star.z <= self.NEAR:
                 self.reset_star(star)
 
-            # Перспективная проекция: чем ближе звезда, тем она крупнее.
+            
             scale = self.focal / star.z
             x = self.width / 2 + star.x * scale
             y = self.height / 2 + star.y * scale

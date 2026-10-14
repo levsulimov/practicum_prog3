@@ -1,4 +1,4 @@
-"""Фейерверки на tkinter. Запуск: py -3 fireworks.py."""
+
 
 import colorsys
 import math
@@ -9,7 +9,6 @@ from dataclasses import dataclass, field
 
 
 def fade_color(color, opacity):
-    """Смешивание RGB с чёрным фоном вместо альфа-канала Canvas."""
     opacity = max(0.0, min(1.0, opacity))
     return "#{:02x}{:02x}{:02x}".format(
         *(round(channel * opacity) for channel in color))
@@ -158,7 +157,6 @@ class Fireworks:
         for rocket in self.rockets:
             rocket.age += dt
             rocket.y -= rocket.speed * dt
-            # Даже после изменения размеров окна ракета живёт не более 3 секунд.
             if rocket.y <= rocket.target_y or rocket.age >= 3.0:
                 self.canvas.delete(rocket.item)
                 self.explode(rocket.x, rocket.y, rocket.color)
